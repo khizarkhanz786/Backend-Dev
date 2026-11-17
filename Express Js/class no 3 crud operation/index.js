@@ -1,7 +1,19 @@
 import express from 'express'
+import morgan from 'morgan'
+import dotenv from 'dotenv'
 
+dotenv.config()
 const app = express()
 app.use(express.json())
+app.use(morgan('tiny'))
+
+// app.use((req, res, next) =>{
+//     console.log("first middleware");
+//     next()
+// })
+
+
+
 
 
 const PORT = 5500
@@ -39,9 +51,11 @@ app.post("/user" , (req , res) =>{
 //read 
 
 app.get("/user" , (req,res)=>{
+    // req.requesttime = new Date()
     res.status(200).json({
         status : "true",
-        data : users
+        data : users,
+        // time: req.requesttime
     })
 })
 
@@ -101,11 +115,11 @@ app.delete("/user/:username" , (req,res)=>{
 
     res.status(200).json({
         status : "true",
-       message: "delete user successfully"
+       message: "delete user successfully",
     })
 })
 
-app.listen(PORT , (req , res ) =>{
-    console.log(`server is listning on port ${PORT}`);
+app.listen(process.env.PORT , (req , res ) =>{
+    console.log(`server is listning on port ${process.env.PORT}`);
     
 })
