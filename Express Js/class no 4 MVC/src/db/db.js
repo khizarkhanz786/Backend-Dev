@@ -10,4 +10,4 @@ try{
 }
 
 }
-export default connectDB;
+export default connectDB; 

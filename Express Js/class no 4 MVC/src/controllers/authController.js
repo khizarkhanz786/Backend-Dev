@@ -4,7 +4,6 @@ import User from "../models/userModel.js";
 const signup = (req, res) => {
 
     const body = req.body;
-    console.log(body);
     User.create(body);
     successRes(200, "true", "signup successful", res );
 
